@@ -1,0 +1,21 @@
+(require 2htdp/image)
+
+;; Image Image -> Boolean
+;; take in two images and return true if the first image is larger than the second image
+(check-expect (check-imageone-larger-imagetwo
+                                             (rectangle 20 30 "outline" "black")
+                                             (rectangle 2 30 "outline" "black")) true)
+(check-expect (check-imageone-larger-imagetwo
+                                             (rectangle 20 30 "outline" "black")
+                                             (rectangle 20 30 "outline" "black")) false)
+(check-expect (check-imageone-larger-imagetwo
+                                             (rectangle 15 5 "outline" "black")
+                                             (rectangle 20 30 "outline" "black")) false)
+
+;(define (check-imageone-larger-imagetwo imgone imgtwo) false) ; stub
+
+;(define (check-imageone-larger-imagetwo imgone imgtwo) ; template
+;  (...imgone imgtwo))
+
+(define (check-imageone-larger-imagetwo imgone imgtwo)
+  (> (* (image-width imgone) (image-height imgone)) (* (image-width imgtwo) (image-height imgtwo))))
