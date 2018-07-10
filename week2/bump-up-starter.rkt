@@ -4,7 +4,7 @@
 
 ;; bump-up-starter.rkt
 
-;
+;PROBLEM:
 ;Using the LetterGrade data definition below design a function that
 ;consumes a letter grade and produces the next highest letter grade. 
 ;Call your function bump-up.
