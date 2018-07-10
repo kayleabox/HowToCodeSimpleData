@@ -16,7 +16,6 @@
 (check-expect (less-than-five "hellos") false)
 (check-expect (less-than-five "ello") true)
 
-
 ;(define (less-than-five str) true) ;stub
 ;(define (less-than-five str) ;template
 ;  (... str)) 

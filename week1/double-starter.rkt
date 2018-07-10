@@ -10,6 +10,7 @@
 ;Call your function double. Follow the HtDF recipe and leave behind commented 
 ;out versions of the stub and template.
 
+
 ;; Number -> Number
 ; this function takes in a number and returns that number multiplied by 2
 (check-expect (double 3) 6)

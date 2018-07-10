@@ -13,11 +13,11 @@
 ;
 ;Leave behind commented out versions of the stub and template.
 
+
 ;; Number -> Number
 ;; given length of a side of a square return the area of the square
 (check-expect (area 3) 9)
 (check-expect (area 6.1) (* 6.1 6.1))
-
 
 ;(define (area s) 0) ;stub
 ;(define (area s)    ;template

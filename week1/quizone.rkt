@@ -15,6 +15,7 @@
 ;
 ;Be sure to watch the evaluation video before completing your assessment.
 
+
 ;; Image Image -> Boolean
 ;; take in two images and return true if the first image is larger than the second image
 (check-expect (check-imageone-larger-imagetwo
