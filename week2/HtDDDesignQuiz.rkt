@@ -94,32 +94,34 @@
 ;remains dead.
 
 ;; Health is one of:
-;; - "alive"
+;; - Natural
 ;; - "dead"
 ;; interp. the health of a person
-;; <examples are redundant for enumerations>
+;; "dead" means the player is dead, a number preresents the number of lives the player has
+(define health1 "dead")
+(define health2 4)
 #;
 (define (fn-for-health health)
-  (cond [(string=? health "alive") (...)]
-        [(string=? health "dead") (...)]))
+  (cond [(number? health) (... health)]
+        [else (...)]))
 
 ;; Template rules used:
 ;; one-of: 2 cases
-;; atomic distinct: "alive"
+;; atomic distinct: Natural
 ;; atomic distinct: "dead"
 
-;; Natural -> Natural
+;; Health -> Health
 ;; increase the lives of the character if the character is not dead
-(check-expect (increase-health 3 "alive") 4)
-(check-expect (increase-health 28 "alive") 29)
-(check-expect (increase-health 0 "dead") 0)
+(check-expect (increase-health 3) 4)
+(check-expect (increase-health 28) 29)
+(check-expect (increase-health "dead") "dead")
 #;
-(define (fn-for-health health) ; stub
-  (cond [(string=? health "alive") 4]
-        [(string=? health "dead") 0]))
+(define (increase-health health) ; stub
+  (cond [(number? health) 4]
+        [else "dead"]))
 
 ; <use template from Health>
 
-(define (increase-health lives health)
-  (cond [(string=? health "alive") (+ lives 1)]
-        [else 0]))
+(define (increase-health health)
+  (cond [(number? health) (+ health 1)]
+        [else "dead"]))

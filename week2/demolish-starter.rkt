@@ -22,9 +22,9 @@
 ;; - "new"
 ;; - "old"
 ;; - "heritage"
-;; interp. the classification of a building
-
+;; interp. the classification of a building based on age
 ;; <examples are redundant for enumeration>
+
 #;
 (define (fn-for-building-status buildingstatus)
   (cond [(string=? "new" buildingstatus) (...)]
@@ -48,10 +48,14 @@
 ;that determines whether a building should be torn down or not.
 
 ;; BuildingStatus -> Boolean
-;; takes in a BuildingStatus and returns true if it is "old"
+;; takes in a BuildingStatus and returns true if it is "old" and should be demolished
 (check-expect (demolish? "old") true)
 (check-expect (demolish? "new") false)
 (check-expect (demolish? "heritage") false)
+
+; (define (demolish? buildingstatus) true) ; stub
+
+; <template from BuildingStatus>
 
 (define (demolish? buildingstatus)
   (string=? "old" buildingstatus))
