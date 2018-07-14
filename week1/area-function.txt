@@ -1,0 +1,22 @@
+
+;; PROBLEM:
+
+;; DESIGN a function called area that consumes the length of one side 
+;; of a square and produces the area of the square.
+
+;; Remember, when we say DESIGN, we mean follow the recipe.
+
+;; Leave behind commented out versions of the stub and template.
+
+;; Number -> Number
+;; given length of a side of a square return the area of the square
+(check-expect (area 3) 9)
+(check-expect (area 6.1) (* 6.1 6.1))
+
+
+; (define (area s) 0) ;stub
+; (define (area s)    ;template
+;   (... s))
+
+(define (area s)
+  (* s s))
