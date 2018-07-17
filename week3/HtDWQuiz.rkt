@@ -23,11 +23,10 @@
 (define MTS (empty-scene WIDTH HEIGHT))
 
 (define RADIUS 5)
-(define FLOWER (circle RADIUS "solid" "pink"))
 
 ;; Data:
 (define-struct flower(x y radius growth))
-;; Flower is (make-flower Natural[0, WIDTH], Natural[0, HEIGHT], Natural[0, 15], Natural)
+;; Flower is (make-flower Natural[0, WIDTH], Natural[0, HEIGHT], Natural[0, 40], Natural)
 ;; interp. (make-flower x y radius growth)
 ;; is a flower with x,y coodinate, a radius of radius and a velocity of growth
 
@@ -38,7 +37,7 @@
 (define (fn-for-flower flower)
   (... (flower-x flower)        ; Natural[0, WIDTH]
        (flower-y flower)        ; Natural[0, HEIGHT]
-       (flower-radius flower)   ; Natural[0, 15]
+       (flower-radius flower)   ; Natural[0, 40]
        (flower-growth flower))) ; Integer
 
 ;; Template rules used:
@@ -59,15 +58,18 @@
 ;; Increases the radius of the flower by growth
 (check-expect (grow-flower (make-flower 20 30 5 3)) (make-flower 20 30 8 3))
 (check-expect (grow-flower (make-flower 20 30 10 5)) (make-flower 20 30 15 5))
+(check-expect (grow-flower (make-flower 20 30 40 5)) (make-flower 20 30 RADIUS 5))
 
 ;; (define (grow-flower flower) flower) ; stub
 
 ; <use template from flower>
 
 (define (grow-flower flower)
-  (make-flower (flower-x flower) (flower-y flower)
-               (+ (flower-radius flower) (flower-growth flower))
-               (flower-growth flower)))
+  (cond [(< (flower-radius flower) 40)(make-flower (flower-x flower) (flower-y flower)
+          (+ (flower-radius flower) (flower-growth flower))
+          (flower-growth flower))]
+        [else (make-flower (flower-x flower) (flower-y flower)
+          RADIUS (flower-growth flower))]))
 
 ;; Flower -> Image
 ;; render flower image to appropriate coordinates on screen
@@ -86,8 +88,8 @@
 
 ;; Flower MouseEvent -> Flower
 ;; grow a new flower in the location clicked
-(check-expect (handle-mouse (make-flower 40 30 5 3) 80 20 "button-down") (make-flower 80 20 5 3))
-(check-expect (handle-mouse (make-flower 40 30 5 3) 80 30 "button-up") (make-flower 40 30 5 3))
+(check-expect (handle-mouse (make-flower 40 30 7 3) 80 20 "button-down") (make-flower 80 20 RADIUS 3))
+(check-expect (handle-mouse (make-flower 40 30 6 3) 80 30 "button-up") (make-flower 40 30 6 3))
 
 ;; (define (handle-mouse flower x y mouse-event) flower) ; stub
 
@@ -98,6 +100,6 @@
          (... flower x y)]))
 
 (define (handle-mouse flower x y mouse-event)
-  (cond [(mouse=? mouse-event "button-down") (make-flower x y (flower-radius flower) (flower-growth flower))]
+  (cond [(mouse=? mouse-event "button-down") (make-flower x y RADIUS (flower-growth flower))]
         [else flower]))
 
